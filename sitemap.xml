@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/index.html</loc><priority>1.0</priority></url>
+  <url><loc>/catalog.html</loc><priority>0.7</priority></url>
+  <url><loc>/product.html</loc><priority>0.7</priority></url>
+  <url><loc>/order.html</loc><priority>0.7</priority></url>
+  <url><loc>/reviews.html</loc><priority>0.7</priority></url>
+  <url><loc>/organizers.html</loc><priority>0.7</priority></url>
+  <url><loc>/contacts.html</loc><priority>0.7</priority></url>
+  <url><loc>/about.html</loc><priority>0.7</priority></url>
+  <url><loc>/privacy.html</loc><priority>0.7</priority></url>
+</urlset>

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /tickets.html
+Disallow: /favorites.html
+Disallow: /my-reviews.html
+Disallow: /404.html
+Sitemap: /sitemap.xml

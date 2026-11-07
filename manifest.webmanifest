@@ -1,0 +1,16 @@
+{
+  "name": "ArtSpace — афиша событий",
+  "short_name": "ArtSpace",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#eef0f4",
+  "theme_color": "#ffc933",
+  "icons": [
+    {
+      "src": "images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
