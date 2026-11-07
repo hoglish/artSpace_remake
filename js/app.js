@@ -1,5 +1,25 @@
 (function(){
 'use strict';
+const ORG_PHOTO_MAP={
+  'джаз-клуб-октава':'https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=600&q=80&auto=format&fit=crop',
+  'филармония-северная':'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=600&q=80&auto=format&fit=crop',
+  'клуб-гараж':'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80&auto=format&fit=crop',
+  'органный-зал-казани':'https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=600&q=80&auto=format&fit=crop',
+  'галерея-светлый-переулок':'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=600&q=80&auto=format&fit=crop',
+  'арт-пространство-кирпичный-двор':'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=80&auto=format&fit=crop',
+  'студия-пигмент':'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80&auto=format&fit=crop',
+  'галерея-урал':'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&q=80&auto=format&fit=crop',
+  'театр-эхо':'https://images.unsplash.com/photo-1503095396549-807759245b35?w=600&q=80&auto=format&fit=crop',
+  'театр-новая-сцена':'https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=600&q=80&auto=format&fit=crop',
+  'театр-кукол-лучик':'https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?w=600&q=80&auto=format&fit=crop',
+  'фотоцентр-диафрагма':'https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?w=600&q=80&auto=format&fit=crop',
+  'фотоцентр-негатив':'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=80&auto=format&fit=crop',
+  'школа-фотографии-кадр':'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&q=80&auto=format&fit=crop',
+  'центр-лофт-арт':'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=600&q=80&auto=format&fit=crop',
+};
+function orgPhoto(slug){return ORG_PHOTO_MAP[slug]||ORG_PHOTO_MAP['центр-лофт-арт'];}
+
+
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const page=document.body.dataset.page;
 document.documentElement.classList.add('js');
@@ -103,7 +123,7 @@ function initSubscribe(){const f=$('#subscribe-form');if(!f)return;const m=$('#s
 function initToTop(){const b=$('#toTop');if(!b)return;const t=()=>b.hidden=window.scrollY<500;window.addEventListener('scroll',t,{passive:true});b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));t()}
 function initNotice(){const b=$('#storageNotice');if(!b||Store.get('notice',false))return;b.hidden=false;const ok=$('#storageNoticeOk');if(ok)ok.addEventListener('click',()=>{Store.set('notice',true);b.hidden=true})}
 function initReveal(){const els=$$('.reveal');if(!els.length)return;if(!('IntersectionObserver'in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(e=>e.classList.add('is-in'));return}const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('is-in');io.unobserve(en.target)}}),{threshold:.12});els.forEach(e=>io.observe(e))}
-function initOrganizers(){const grid=$('#org-grid');if(!grid)return;const map=new Map();EVENTS.forEach(e=>{if(!map.has(e.organizer))map.set(e.organizer,{name:e.organizer,count:0,cats:new Set(),cities:new Set(),pmin:Infinity});const o=map.get(e.organizer);o.count++;o.cats.add(e.category);o.cities.add(e.city);if(e.price<o.pmin)o.pmin=e.price});const list=Array.from(map.values()).sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name,'ru'));$('#org-count').textContent=`Всего организаторов: ${list.length}`;grid.innerHTML=list.map(o=>`<div class="col-12 col-md-6 col-xl-4"><article class="panel h-100 p-4"><h2 class="h5 mb-2">${esc(o.name)}</h2><p class="text-muted-2 mb-3">${esc(Array.from(o.cats).map(k=>CATEGORIES[k]).join(', '))}</p><dl class="row mb-3 small"><dt class="col-5">Событий</dt><dd class="col-7">${o.count}</dd><dt class="col-5">Города</dt><dd class="col-7">${esc(Array.from(o.cities).join(', '))}</dd><dt class="col-5 mb-0">Цены от</dt><dd class="col-7 mb-0">${formatPrice(o.pmin)}</dd></dl><a class="btn btn-primary" href="catalog.html?organizer=${encodeURIComponent(o.name)}">Афиша организатора</a></article></div>`).join('');$('#org-empty').hidden=list.length>0}
+function initOrganizers(){const grid=$('#org-grid');if(!grid)return;const map=new Map();EVENTS.forEach(e=>{if(!map.has(e.organizer))map.set(e.organizer,{name:e.organizer,count:0,cats:new Set(),cities:new Set(),pmin:Infinity});const o=map.get(e.organizer);o.count++;o.cats.add(e.category);o.cities.add(e.city);if(e.price<o.pmin)o.pmin=e.price});const list=Array.from(map.values()).sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name,'ru'));$('#org-count').textContent=`Всего организаторов: ${list.length}`;grid.innerHTML=list.map(o=>{const cat=(o.cats&&[...o.cats][0])||'music';const slug=o.name.toLowerCase().replace(/[^а-яa-z0-9]+/gi,'-').replace(/^-|-$/g,'');const photo=orgPhoto(slug);return '<div class="col-12 col-md-6 col-xl-4">'+'<article class="org-card cat-'+cat+'">'+'<div class="org-card__photo"><img src="'+photo+'" alt="" width="600" height="375" loading="lazy"></div>'+'<div class="org-card__body">'+'<h2 class="org-card__name">'+esc(o.name)+'</h2>'+'<p class="org-card__cats">'+esc(Array.from(o.cats).map(k=>CATEGORIES[k]).join(', '))+'</p>'+'<dl class="org-card__stats">'+'<dt>Событий</dt><dd>'+o.count+'</dd>'+'<dt>Города</dt><dd>'+esc(Array.from(o.cities).join(', '))+'</dd>'+'<dt>Цены от</dt><dd>'+formatPrice(o.pmin)+'</dd>'+'</dl>'+'<a class="btn btn-primary" href="catalog.html?organizer='+encodeURIComponent(o.name)+'">Афиша организатора</a>'+'</div></article></div>'}).join('');$('#org-empty').hidden=list.length>0}
 function renderMyReviews(){const box=$('#myrev-list');if(!box)return;const own=allReviews().filter(r=>r.own);box.innerHTML=own.map(r=>`<div class="col-12 col-lg-6">${reviewHtml(r,true)}</div>`).join('');$('#myrev-count').textContent=own.length?`Ваших отзывов: ${own.length} ${plural(own.length,['отзыв','отзыва','отзывов'])}`:'';$('#myrev-empty').hidden=own.length>0}
 function initMyReviews(){renderMyReviews()}
 window.addEventListener('storage',()=>{updateCounters();if(page==='favorites')renderFavorites();if(page==='my-reviews')renderMyReviews()});
