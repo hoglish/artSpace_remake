@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live — ближайшие события — ArtSpace</title>
+  <meta name="description" content="Что идёт сейчас и что начнётся совсем скоро: обратный отсчёт до ближайших событий.">
+  <meta name="theme-color" content="#ffc933">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ArtSpace">
+  <meta property="og:title" content="Live — ближайшие события — ArtSpace">
+  <meta property="og:description" content="Что идёт сейчас и что начнётся совсем скоро: обратный отсчёт до ближайших событий.">
+  <meta property="og:locale" content="ru_RU">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap&subset=cyrillic" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+  <script>
+    (function () {
+      var P = '__artspace__:', F = location.protocol === 'file:', t = null;
+      function bag() { try { var n = window.name || ''; if (n.indexOf(P) === 0) return JSON.parse(n.slice(P.length)) || {}; } catch (e) {} return {}; }
+      function ls() { try { return JSON.parse(localStorage.getItem('artspace:theme')); } catch (e) { return null; } }
+      t = F ? (bag().theme || ls()) : (ls() || bag().theme);
+      if (t !== 'dark' && t !== 'light') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-bs-theme', t);
+    })();
+  </script>
+</head>
+<body data-page="live">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.3l7.8-7.8 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+<symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 0 0 6v3a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3a2 2 0 0 1 0-6V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1z"/><path d="M14 5v14" stroke-dasharray="2 3"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></symbol>
+<symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+</svg>
+  <a class="skip-link visually-hidden-focusable" href="#main">Перейти к содержимому</a>
+
+  <header>
+  <nav class="navbar navbar-expand-lg as-navbar sticky-top" aria-label="Основное меню">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="images/logo.svg" alt="" width="34" height="34">
+        <span>ArtSpace</span>
+      </a>
+      <div class="d-flex align-items-center gap-2 order-lg-last">
+        <a class="icon-btn active" href="favorites.html" aria-label="Избранное" title="Избранное">
+          <svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span class="icon-btn__count" id="favCount" hidden>0</span>
+        </a>
+        <a class="icon-btn" href="tickets.html" aria-label="Мои записи" title="Мои записи">
+          <svg class="icon" aria-hidden="true"><use href="#i-ticket"></use></svg><span class="icon-btn__count" id="ticketCount" hidden>0</span>
+        </a>
+        <button class="icon-btn" type="button" id="themeToggle" aria-pressed="false" aria-label="Включить тёмную тему" title="Тема оформления">
+          <svg class="icon theme-icon-light" aria-hidden="true"><use href="#i-moon"></use></svg><svg class="icon theme-icon-dark" aria-hidden="true"><use href="#i-sun"></use></svg>
+        </button>
+        <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Переключить навигацию">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-lg-4 me-auto gap-lg-1 py-2 py-lg-0">
+<li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+<li class="nav-item"><a class="nav-link" href="catalog.html">Каталог</a></li>
+<li class="nav-item"><a class="nav-link active" aria-current="page" href="live.html"><span class="nav-live">Live<span class="live-dot live-dot--sm" aria-hidden="true"></span></span></a></li>
+<li class="nav-item"><a class="nav-link" href="collections.html">Подборки</a></li>
+<li class="nav-item"><a class="nav-link" href="organizers.html">Организаторы</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">О проекте</a></li>
+        </ul></div>
+      </div>
+  </nav>
+  </header>
+
+  <noscript><div class="container my-4"><div class="alert alert-warning mb-0">Для работы афиши, избранного и записи нужен включённый JavaScript.</div></div></noscript>
+  <main id="main">
+    <section class="live-hero" aria-labelledby="live-title">
+      <div class="container">
+        <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html">Главная</a></li><li class="breadcrumb-item active" aria-current="page">Live</li></ol></nav>
+        <p class="live-hero__badge"><span class="live-dot" aria-hidden="true"></span> Live · обновляется каждую секунду</p>
+        <h1 class="mt-3" id="live-title">Что происходит сейчас</h1>
+        <p class="lead mb-0" style="max-width:40rem;color:#c9ccda">Ближайшие события с обратным отсчётом: что уже идёт, что начнётся в ближайшие часы и что запланировано дальше.</p>
+        <div class="live-next" id="live-next" hidden></div>
+      </div>
+    </section>
+
+    <div class="container my-4 my-lg-5">
+      <form class="d-flex flex-wrap align-items-center gap-3" id="lv-filters" aria-label="Фильтры Live" onsubmit="return false">
+        <div>
+          <label for="lv-city" class="visually-hidden">Город</label>
+          <select id="lv-city" class="form-select"><option value="">Все города</option></select>
+        </div>
+        <div class="form-check form-switch mb-0">
+          <input class="form-check-input" type="checkbox" role="switch" id="lv-online">
+          <label class="form-check-label" for="lv-online">Только онлайн</label>
+        </div>
+        <div class="form-check form-switch mb-0">
+          <input class="form-check-input" type="checkbox" role="switch" id="lv-seats">
+          <label class="form-check-label" for="lv-seats">Только с местами</label>
+        </div>
+        <button type="button" class="btn btn-primary ms-lg-auto" id="lv-surprise"><svg class="icon" aria-hidden="true"><use href="#i-shuffle"></use></svg> Удиви меня</button>
+      </form>
+      <div class="surprise" id="lv-surprise-box" hidden></div>
+      <p class="fw-bold mt-4 mb-0" id="live-count" aria-live="polite"></p>
+
+      <section class="live-block" aria-labelledby="live-now-title">
+        <h2 id="live-now-title"><span class="live-dot live-dot--sm" aria-hidden="true"></span> Идёт сейчас</h2>
+        <div class="row g-4" id="live-now"></div>
+        <p class="text-muted-2" id="live-now-empty" hidden>Прямо сейчас ничего не идёт — загляните в раздел «Скоро».</p>
+      </section>
+
+      <section class="live-block" aria-labelledby="live-soon-title">
+        <h2 id="live-soon-title">Скоро: ближайшие 48 часов</h2>
+        <div class="row g-4" id="live-soon"></div>
+        <p class="text-muted-2" id="live-soon-empty" hidden>В ближайшие двое суток событий нет — смотрите расписание ниже.</p>
+      </section>
+
+      <section class="live-block" aria-labelledby="live-later-title">
+        <h2 id="live-later-title">Дальше по расписанию</h2>
+        <ol class="live-tl" id="live-timeline"></ol>
+        <p class="text-muted-2" id="live-later-empty" hidden>Дальше по расписанию пока пусто.</p>
+      </section>
+
+      <div class="empty mt-5" id="live-empty" hidden>
+        <span class="empty__icon" aria-hidden="true"><svg class="icon"><use href="#i-search"></use></svg></span>
+        <h2 class="h5">Под ваши фильтры ничего не нашлось</h2>
+        <p class="text-muted-2">Снимите часть фильтров или откройте весь каталог.</p>
+        <a class="btn btn-primary" href="catalog.html">Открыть афишу</a>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="eventModalLabel" style="font-family:var(--font-body)">Событие</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex flex-wrap gap-1 mb-3" id="eventModalLabels"></div>
+          <dl class="row mb-3">
+            <dt class="col-4">Дата</dt><dd class="col-8" id="eventModalDate"></dd>
+            <dt class="col-4">Место</dt><dd class="col-8" id="eventModalPlace"></dd>
+            <dt class="col-4">Цена</dt><dd class="col-8" id="eventModalPrice"></dd>
+            <dt class="col-4">Места</dt><dd class="col-8 mb-0" id="eventModalSeats"></dd>
+          </dl>
+          <p class="mb-0 text-muted-2" id="eventModalText"></p>
+        </div>
+        <div class="modal-footer flex-wrap">
+          <a id="eventModalLink" class="btn btn-outline-primary" href="catalog.html">Подробнее</a>
+          <a id="eventModalBook" class="btn btn-primary" href="order.html">Записаться</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="confirmTitle" style="font-family:var(--font-body)">Подтвердите действие</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body"><p class="mb-0" id="confirmText"></p></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Нет, оставить</button>
+          <button type="button" class="btn btn-danger" id="confirmOk">Подтвердить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-lg-5">
+          <a class="brand mb-3" href="index.html">
+            <img class="brand__logo" src="images/logo.svg" alt="" width="34" height="34">
+            <span>ArtSpace</span>
+          </a>
+          <p>Афиша концертов, выставок и спектаклей: найти событие, записаться и сохранить билет.</p>
+          <form id="subscribe-form" class="d-flex flex-wrap gap-2" novalidate>
+            <label for="subscribe-email" class="visually-hidden">E-mail для дайджеста</label>
+            <input id="subscribe-email" type="email" class="form-control w-auto flex-grow-1" placeholder="Ваш e-mail для дайджеста" autocomplete="email" style="max-width:20rem">
+            <button class="btn btn-primary" type="submit">Подписаться</button>
+          </form>
+          <p class="footer__sub-msg mt-2 mb-0" id="subscribe-msg" aria-live="polite"></p>
+        </div>
+        <div class="col-6 col-lg-2 offset-lg-1">
+          <h2 class="footer__title text-center">Разделы</h2>
+          <ul class="list-unstyled mb-0 text-center">
+            <li><a class="footer__link" href="index.html">Главная</a></li>
+            <li><a class="footer__link" href="catalog.html">Каталог</a></li>
+            <li><a class="footer__link" href="live.html">Live</a></li>
+            <li><a class="footer__link" href="collections.html">Подборки</a></li>
+            <li><a class="footer__link" href="organizers.html">Организаторы</a></li>
+            <li><a class="footer__link" href="reviews.html">Отзывы</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h2 class="footer__title text-center">Помощь</h2>
+          <ul class="list-unstyled mb-0 text-center">
+            <li><a class="footer__link" href="about.html">О проекте</a></li>
+            <li><a class="footer__link" href="contacts.html#faq">Вопросы и ответы</a></li>
+            <li><a class="footer__link" href="contacts.html">Контакты</a></li>
+            <li><a class="footer__link" href="privacy.html">Конфиденциальность и условия</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom d-flex flex-wrap justify-content-center gap-2 text-center">
+        <span>&copy; 2026 ArtSpace. Все права защищены. <a class="footer__link" href="privacy.html">Политика и условия</a></span>
+        
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed bottom-0 start-0 p-3" id="toasts" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="notice" id="storageNotice" role="region" aria-label="Уведомление о хранении данных" hidden>
+    <p class="mb-3">Сайт запоминает ваши записи, избранное, отзывы и тему оформления только в этом браузере (localStorage). На сервер ничего не отправляется. <a href="privacy.html">Подробнее</a></p>
+    <button type="button" class="btn btn-primary btn-sm" id="storageNoticeOk">Понятно</button>
+  </div>
+
+  <button type="button" class="btn btn-primary to-top" id="toTop" aria-label="Наверх" hidden>
+    <svg class="icon" aria-hidden="true" style="transform:rotate(-90deg)"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/extras.js"></script>
+</body>
+</html>

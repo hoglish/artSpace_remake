@@ -305,3 +305,152 @@ a.day-tile:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-sm);back
 /* ===== fix9: отступ кнопки Помощь ===== */
 /* Кнопка находится внутри flex-контейнера с иконками, 
    поэтому отодвигаем её именно там */
+
+/* ================= ArtSpace patch: extras ================= */
+
+/* --- навигация: 6 пунктов и Live-индикатор --- */
+@media (min-width:992px){.as-navbar .nav-link{padding:.4rem .6rem;font-size:.95rem}}
+.nav-live{display:inline-flex;align-items:center;gap:.4rem}
+
+/* --- полоса прокрутки --- */
+.scroll-progress{position:fixed;inset:0 0 auto 0;height:4px;z-index:1090;pointer-events:none}
+.scroll-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--lime));transform-origin:0 50%;transform:scaleX(0)}
+
+/* --- анимация смены темы --- */
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-old(root){z-index:1}
+::view-transition-new(root){z-index:2147483646}
+.theme-anim,.theme-anim *,.theme-anim *::before,.theme-anim *::after{transition:background-color .45s ease,color .45s ease,border-color .45s ease,box-shadow .45s ease,fill .45s ease,stroke .45s ease!important}
+#themeToggle.is-spinning .icon{animation:theme-spin .6s cubic-bezier(.4,0,.2,1)}
+@keyframes theme-spin{from{transform:rotate(-180deg) scale(.3);opacity:0}to{transform:none;opacity:1}}
+
+/* --- hero: параллакс (свойство translate не конфликтует с transform) --- */
+.hero__poster:nth-child(1){translate:calc(var(--mx,0)*-12px) calc(var(--my,0)*-9px)}
+.hero__poster:nth-child(2){translate:calc(var(--mx,0)*14px) calc(var(--my,0)*-6px)}
+.hero__poster:nth-child(3){translate:calc(var(--mx,0)*-7px) calc(var(--my,0)*10px)}
+
+/* --- карточки: подсветка за курсором --- */
+@media (hover:hover){
+  .event-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.3),transparent 65%)}
+  .event-card:hover::after{opacity:1}
+}
+.event-card.is-picked{animation:picked 2.6s ease}
+@keyframes picked{0%,100%{outline:0 solid transparent}15%,70%{outline:4px solid var(--red);outline-offset:4px}}
+.tag--last{animation:last-pulse 2.2s ease-in-out infinite}
+@keyframes last-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+
+/* --- появление блоков по очереди --- */
+.anim-in{animation:anim-in .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*70ms)}
+@keyframes anim-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* --- конфетти --- */
+.confetti{position:fixed;inset:0;width:100vw;height:100vh;z-index:3000;pointer-events:none}
+
+/* --- страница события: инструменты --- */
+.pt-tools{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+
+/* --- быстрый поиск --- */
+.cmdk{padding:0;border:2px solid var(--line);border-radius:var(--radius);width:min(40rem,calc(100vw - 2rem));margin:10vh auto auto;background:var(--card);color:var(--text);box-shadow:8px 8px 0 var(--line)}
+.cmdk::backdrop{background:rgba(10,10,14,.55);backdrop-filter:blur(3px)}
+.cmdk[open]{animation:cmdk-in .18s ease-out}
+@keyframes cmdk-in{from{opacity:0;transform:translateY(-10px) scale(.98)}to{opacity:1;transform:none}}
+.cmdk__bar{display:flex;align-items:center;gap:.7rem;padding:.9rem 1rem;border-bottom:2px solid var(--line)}
+.cmdk__input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font-size:1.05rem}
+.cmdk kbd{padding:.1rem .4rem;border:1.5px solid var(--line);border-radius:.3rem;font-size:.75rem;background:var(--sunk);color:var(--text)}
+.cmdk__list{list-style:none;margin:0;padding:.4rem;max-height:min(22rem,55vh);overflow:auto}
+.cmdk__list a{display:grid;grid-template-columns:6.2rem 1fr;gap:0 .8rem;padding:.55rem .7rem;border-radius:.4rem;color:var(--text);text-decoration:none}
+.cmdk__list a .cmdk__s{grid-column:2;font-size:.85rem;color:var(--muted)}
+.cmdk__kind{grid-row:span 2;align-self:center;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.cmdk__t{font-weight:600}
+.cmdk__list li[aria-selected="true"] a{background:var(--yellow);color:#000}
+.cmdk__list li[aria-selected="true"] .cmdk__s,.cmdk__list li[aria-selected="true"] .cmdk__kind{color:#000}
+.cmdk__empty{padding:1.2rem;text-align:center;color:var(--muted)}
+.cmdk__hint{margin:0;padding:.6rem 1rem;border-top:2px solid var(--line);font-size:.8rem;color:var(--muted)}
+
+/* --- Live --- */
+.live-dot{display:inline-block;width:.7rem;height:.7rem;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(255,75,38,.7);animation:live-pulse 1.6s infinite;vertical-align:middle}
+.live-dot--sm{width:.5rem;height:.5rem}
+.live-dot--idle{background:var(--lime);animation-name:live-pulse-g}
+@keyframes live-pulse{0%{box-shadow:0 0 0 0 rgba(255,75,38,.7)}70%{box-shadow:0 0 0 .7rem rgba(255,75,38,0)}100%{box-shadow:0 0 0 0 rgba(255,75,38,0)}}
+@keyframes live-pulse-g{0%{box-shadow:0 0 0 0 rgba(189,235,58,.7)}70%{box-shadow:0 0 0 .7rem rgba(189,235,58,0)}100%{box-shadow:0 0 0 0 rgba(189,235,58,0)}}
+.live-hero{padding:3rem 0 3.5rem;background:#0d0e13;color:#fff;border-bottom:2px solid var(--line)}
+.live-hero .breadcrumb{--bs-breadcrumb-divider-color:#9aa0b5;--bs-breadcrumb-item-active-color:#fff}
+.live-hero .breadcrumb a{color:#ffc933}
+.live-hero h1{color:#fff}
+.live-hero__badge{display:inline-flex;align-items:center;gap:.55rem;padding:.3rem .8rem;border:2px solid #fff;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.live-next{display:grid;grid-template-columns:5fr 7fr;margin-top:2rem;border:2px solid #fff;background:#171923;box-shadow:8px 8px 0 var(--yellow)}
+.live-next__poster img{display:block;width:100%;height:100%;object-fit:cover;min-height:14rem}
+.live-next__body{padding:1.6rem;display:flex;flex-direction:column;gap:1rem}
+.live-next__kicker{margin:0;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.85rem;color:#ffc933}
+.live-next__title{margin:0;font-size:clamp(1.3rem,3vw,1.9rem)}
+.live-next__title a{color:#fff;text-decoration:none}
+.live-next__title a:hover{color:#ffc933}
+.live-next__meta{margin:0;color:#c9ccda}
+.live-next__seats{color:#ffb4a3}
+.live-next__prog{height:.7rem;border:2px solid #fff;border-radius:0;background:transparent}
+.live-next__prog .progress-bar{background:var(--red)}
+.countdown{display:flex;flex-wrap:wrap;gap:.6rem}
+.countdown__cell{min-width:4.8rem;padding:.55rem .6rem;border:2px solid #fff;text-align:center;background:rgba(255,255,255,.06)}
+.countdown__num{display:block;font:800 clamp(1.7rem,5vw,2.8rem)/1 var(--font-display);font-variant-numeric:tabular-nums}
+.countdown__num.tick{animation:tick-in .35s ease-out}
+@keyframes tick-in{from{transform:translateY(-35%);opacity:0}to{transform:none;opacity:1}}
+.countdown__lbl{display:block;margin-top:.2rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:#c9ccda}
+.live-hero .btn-outline-light{--bs-btn-color:#fff;--bs-btn-border-color:#fff;--bs-btn-hover-bg:#fff;--bs-btn-hover-color:#000;box-shadow:none}
+.tag--live{background:var(--red);color:#000;display:inline-flex;align-items:center;gap:.35rem}
+.tag--count{background:#000;color:#fff;font-variant-numeric:tabular-nums}
+.live-block{margin-top:3rem}
+.live-block h2{font-size:clamp(1.3rem,3vw,1.8rem);margin-bottom:1.2rem}
+.live-tl{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+.tl-item{display:grid;grid-template-columns:4.2rem 1fr auto auto;gap:1rem;align-items:center;padding:.8rem 1rem;border:2px solid var(--line);background:var(--card);box-shadow:var(--shadow-sm)}
+.tl-date{text-align:center;border:2px solid var(--line);background:var(--yellow);color:#000;padding:.3rem 0;line-height:1.1}
+.tl-date b{display:block;font:800 1.35rem/1 var(--font-display)}
+.tl-date span{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.tl-body{display:flex;flex-direction:column;min-width:0}
+.tl-body a{font-weight:700;color:var(--text);text-decoration:none}
+.tl-body a:hover{color:var(--red)}
+.surprise{display:flex;gap:1rem;align-items:center;margin-top:1.2rem;padding:1rem;border:2px dashed var(--line);background:var(--card)}
+.surprise.is-final{border-style:solid;box-shadow:var(--shadow-sm);animation:pop-in .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop-in{from{transform:scale(.94);opacity:.4}to{transform:none;opacity:1}}
+.surprise__img{width:9rem;max-width:30%;height:auto;border:2px solid var(--line)}
+.surprise__kicker{margin:0;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.surprise__title{margin:.1rem 0;font:700 1.15rem var(--font-display)}
+.surprise__meta{margin:0 0 .6rem;color:var(--muted)}
+@media (max-width:767.98px){
+  .live-next{grid-template-columns:1fr}
+  .live-next__poster img{max-height:13rem}
+  .tl-item{grid-template-columns:4.2rem 1fr}
+  .tl-item .tag,.tl-item .btn{grid-column:2;justify-self:start}
+}
+
+/* --- Подборки --- */
+.col-tile{display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;width:100%;height:100%;padding:1.1rem;text-align:left;border:2px solid var(--line);border-radius:var(--radius);background:var(--c);color:#000;box-shadow:var(--shadow-sm);transition:transform .15s,box-shadow .15s}
+.col-tile:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow)}
+.col-tile[aria-pressed="true"]{transform:translate(-3px,-3px);box-shadow:var(--shadow);outline:3px solid var(--text);outline-offset:3px}
+.col-tile__icon{display:inline-flex;align-items:center;justify-content:center;width:2.6rem;height:2.6rem;border:2px solid #000;border-radius:50%;background:#fff}
+.col-tile__icon .icon{width:1.3rem;height:1.3rem}
+.col-tile__title{font:700 1.05rem/1.2 var(--font-display)}
+.col-tile__count{font-size:.85rem;font-weight:600}
+.col-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem;margin:2.5rem 0 1.5rem}
+.col-head h2{margin:0}
+
+/* --- уважение к настройкам пользователя --- */
+@media (prefers-reduced-motion:reduce){
+  .anim-in,.tag--last,.live-dot,.countdown__num.tick,.surprise.is-final,.cmdk[open],#themeToggle.is-spinning .icon,.event-card.is-picked{animation:none!important}
+  .hero__poster{translate:none!important}
+}
+
+/* --- кнопка темы: показываем только нужную иконку --- */
+.theme-icon-dark{display:none}
+[data-bs-theme="dark"] .theme-icon-light{display:none}
+[data-bs-theme="dark"] .theme-icon-dark{display:inline-block}
+
+/* --- hero: постеры не вылезают за свой блок (у <img> был атрибут height=450) --- */
+.hero__collage{isolation:isolate}
+.hero__poster{height:auto;max-width:none;transition:transform .25s ease,translate .3s ease}
+@media (max-width:991.98px){.hero__collage{margin-top:.5rem}}
+
+/* --- кнопка «Наверх»: плавное появление и скрытие --- */
+.btn.to-top{transition:opacity .35s ease,transform .5s cubic-bezier(.34,1.56,.64,1),visibility 0s linear 0s,background-color .15s,box-shadow .15s}
+.btn.to-top[hidden]{display:grid!important;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(1.5rem) scale(.5);transition:opacity .25s ease,transform .35s ease,visibility 0s linear .35s}
+.btn.to-top:not([hidden]):hover{transform:translateY(-4px)}
+@media (prefers-reduced-motion:reduce){.btn.to-top,.btn.to-top[hidden]{transition:opacity .2s linear,visibility 0s linear .2s}.btn.to-top[hidden]{transform:none}}
